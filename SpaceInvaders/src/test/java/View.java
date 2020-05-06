@@ -5,7 +5,7 @@ import javax.swing.*;
 public class View {
 	
 	public static void main(String[] args) {
-		int x = 2;
+		int x = 1;
 		JFrame frame = new JFrame();
 		frame.setSize(1100,600);
         frame.addWindowListener(new WindowAdapter() {
