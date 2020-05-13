@@ -5,7 +5,11 @@ import javax.swing.*;
 
 public class View extends JFrame{
 
-    private JPanel panel;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel panel;
     private int first=0;//first key pressed
     private int second=0;//second key pressed
     
@@ -24,7 +28,12 @@ public class View extends JFrame{
         setLocation(200,100);
         
         panel = new JPanel(){
-            @Override
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
             public void paint(Graphics g){
                 g.drawImage(new ImageIcon("src/test/resources/icecream.PNG").getImage(),
                 		GameBoard.getPlayer().getX(),GameBoard.getPlayer().getY(),

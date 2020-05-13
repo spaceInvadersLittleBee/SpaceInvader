@@ -5,7 +5,15 @@ public abstract class Character extends GameObject{
 
 	public Character(int x, int y, int width, int height, int speed,int HP) {
 		super(x, y, width, height, speed);
-		this.HP = HP;
+		this.setHP(HP);
+	}
+
+	public int getHP() {
+		return HP;
+	}
+
+	public void setHP(int hP) {
+		HP = hP;
 	}
 
 }
