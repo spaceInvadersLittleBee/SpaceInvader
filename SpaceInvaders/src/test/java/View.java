@@ -65,12 +65,21 @@ public class View extends JFrame{
                 }
             }
         });
+       
         
         
         
         setVisible(true);
     }//end of windowSetup()
     
+    public int getXAxis() {
+    	if(second==0){
+            return first;
+        }
+        else {
+            return second;
+        }
+    }
     
     
     

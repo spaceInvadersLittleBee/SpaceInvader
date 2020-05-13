@@ -36,12 +36,7 @@ public class GameBoard {
 	
 	//update is called once per frame
     public static void update(){
-        if(view.getSecond()==0){
-            player.moveDir(view.getFirst(), 0);
-        }
-        else {
-            player.moveDir(view.getSecond(), 0);
-        }
+        player.moveDir(view.getXAxis(), 0);
         
         view.repaint();
     }//end of update
