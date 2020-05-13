@@ -5,7 +5,6 @@ import javax.swing.*;
 
 public class View extends JFrame{
 
-    public static View view;
     JPanel panel;
     int x = 350;
     int y = 50;
@@ -14,21 +13,17 @@ public class View extends JFrame{
     int second=0;
     int dir = 10;
     
-    public static void instantiate() {
-    	view = new View();
-    }
     
     //initialize frame
     public void windowSetup(){
-        view.setSize(1100,600);
-        view.setBackground(Color.BLACK);
-        view.addWindowListener(new WindowAdapter() {
+        setSize(1100,600);
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
-        view.setLocation(200,100);
+        setLocation(200,100);
         panel = new JPanel(){
             @Override
             public void paint(Graphics g){
@@ -38,10 +33,11 @@ public class View extends JFrame{
             }
         };
         panel.setLocation(0,0);
+        panel.setBackground(Color.blue);
         panel.setSize(1100,600);
-        view.add(panel);
+        add(panel);
         
-        view.addKeyListener(new KeyAdapter() {
+        addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_LEFT){
@@ -63,7 +59,7 @@ public class View extends JFrame{
                 }
             }
         });
-        view.setVisible(true);
+        
         GameBoard.boardSetup();
         
         Timer timer = new Timer(17,new ActionListener() {
@@ -72,6 +68,7 @@ public class View extends JFrame{
 			}
 		});
         timer.start();
+        setVisible(true);
     }
     
     //update is called once per frame
@@ -84,7 +81,7 @@ public class View extends JFrame{
         }
         y=y+v;
         v=v+((100-y)/20);
-        view.repaint();
+        repaint();
     }
     
     
