@@ -1,22 +1,25 @@
+import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 
-public class View {
-	
-	public static void main(String[] args) {
-		int x = 1;
-		JFrame frame = new JFrame();
-		frame.setSize(1100,600);
-        frame.addWindowListener(new WindowAdapter() {
+public class View extends JFrame{
+
+    public static View view;
+
+    public static void windowSetup(){
+        view = new View();
+        view.setSize(1100,600);
+        view.setBackground(Color.BLACK);
+        view.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
-        frame.setLocation(200,100);
-        frame.setVisible(true);
-	}
-	
+        view.setLocation(200,100);
+        view.setVisible(true);
+    }
+
 
 }
