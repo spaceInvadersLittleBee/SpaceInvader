@@ -1,10 +1,16 @@
+package Model;
+
+import java.awt.Image;
+import java.util.List;
 
 public abstract class GameObject {
-	private int x;
-	private int y;
-	private int width;
-	private int height;
-	private int speed;
+	
+	protected int x;
+	protected int y;
+	protected int width;
+	protected int height;
+	protected int speed;
+	protected Image image;
 	
 	public GameObject(int x, int y, int width, int height, int speed) {
 		this.x = x;
@@ -32,10 +38,19 @@ public abstract class GameObject {
 	public int getSpeed() {
 		return speed;
 	}
+	public Image getImage() {
+		return image;
+	}
 	
 	public void moveDir(int xDir, int yDir) {
 		x = x+xDir*speed;
 		y = y+yDir*speed;
 	}
 	
+	public GameObject detectCollision(List<GameObject> collidables) {
+		return null;
+	}
+	
+	public abstract void OnCollision(GameObject collider);
+
 }

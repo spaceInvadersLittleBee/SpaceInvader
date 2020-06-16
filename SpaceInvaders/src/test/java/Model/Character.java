@@ -1,3 +1,4 @@
+package Model;
 
 public abstract class Character extends GameObject{
 	
@@ -15,5 +16,7 @@ public abstract class Character extends GameObject{
 	public void setHP(int hP) {
 		HP = hP;
 	}
+	
+	public abstract void shoot();
 
 }

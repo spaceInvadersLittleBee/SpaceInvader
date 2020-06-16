@@ -1,25 +1,22 @@
+package View;
+
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
+import Controller.GameBoard;
 
 public class View extends JFrame{
-
-    /**
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
     private int first=0;//first key pressed
     private int second=0;//second key pressed
+    private boolean shooting;
     
-    public int getFirst() {
-    	return first;
-    }
     
-    public int getSecond() {
-    	return second;
-    }
     
     //initialize frame
     public void windowSetup(){
@@ -35,9 +32,9 @@ public class View extends JFrame{
 
 			@Override
             public void paint(Graphics g){
-                g.drawImage(new ImageIcon("src/test/resources/icecream.PNG").getImage(),
-                		GameBoard.getPlayer().getX(),GameBoard.getPlayer().getY(),
-                		GameBoard.getPlayer().getWidth(),GameBoard.getPlayer().getHeight(),null);
+                g.drawImage(GameBoard.getGameBoard().getPlayer().getImage(),
+                		GameBoard.getGameBoard().getPlayer().getX(),GameBoard.getGameBoard().getPlayer().getY(),
+                		GameBoard.getGameBoard().getPlayer().getWidth(),GameBoard.getGameBoard().getPlayer().getHeight(),null);
             }
         };
         panel.setLocation(0,0);
@@ -62,6 +59,9 @@ public class View extends JFrame{
                     if(first==0)first=1;
                     else if(first==-1)second = 1;
                 }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+                	shooting = true;
+                }
             }
             @Override
             public void keyReleased(KeyEvent e){
@@ -71,6 +71,9 @@ public class View extends JFrame{
                     first=second;second=0;
                 }else {
                     first=-second;second = 0;
+                }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+                	shooting = false;
                 }
             }
         });
@@ -90,8 +93,8 @@ public class View extends JFrame{
         }
     }
     
-    
-    
-
-
+    public boolean isShooting() {
+    	return shooting;
+    }
+	
 }
