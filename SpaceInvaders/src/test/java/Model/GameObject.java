@@ -47,6 +47,7 @@ public abstract class GameObject {
 		y = y+yDir*speed;
 	}
 	
+	//TODO
 	public GameObject detectCollision(List<GameObject> collidables) {
 		return null;
 	}

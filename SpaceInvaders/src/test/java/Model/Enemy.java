@@ -10,13 +10,13 @@ public class Enemy extends Character{
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
+		// TODO 
 		
 	}
 
 	@Override
 	public void OnCollision(GameObject collider) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 

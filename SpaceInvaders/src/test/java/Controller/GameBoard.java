@@ -67,10 +67,11 @@ public class GameBoard {
 	        view.repaint();
 	    }//end of update
 	    
+	    //TODO
 	    private void moveEnemies() {
 	    	
 	    }
-	    
+	    //TODO
 	    private void moveBullets() {
 	    	
 	    }
@@ -83,6 +84,8 @@ public class GameBoard {
 	    	
 	    }
 	    
+	    
+	    //TODO
 	    private void enemiesShoot() {
 	    	
 	    }
