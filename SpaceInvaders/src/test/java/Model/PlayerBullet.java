@@ -1,16 +1,23 @@
 package Model;
 
-public class PlayerBullet extends Bullet{
+import Controller.GameBoard;
+
+public class PlayerBullet extends Bullet implements Friendly{
 	
 	public PlayerBullet(int x, int y, int width, int height,int speed, int damage) {
 		super(x, y, width, height,speed, damage);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void OnCollision(GameObject collider) {
-		// TODO Auto-generated method stub
-		
+
+	public void hitEnemy(Enemy enemy) {
+		enemy.loseHP(damage);
+		GameBoard.getGameBoard().getPlayerBullets().remove(this);
+	}
+
+
+	public void hitEnemyBullet(EnemyBullet enemyBullet) {
+		GameBoard.getGameBoard().getPlayerBullets().remove(this);
 	}
 
 }

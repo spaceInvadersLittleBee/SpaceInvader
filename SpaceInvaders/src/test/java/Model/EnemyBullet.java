@@ -1,17 +1,21 @@
 package Model;
 
-public class EnemyBullet extends Bullet{
+import Controller.GameBoard;
+
+public class EnemyBullet extends Bullet implements Hostile{
 	
 	public EnemyBullet(int x, int y, int width, int height,int speed, int damage) {
 		super(x, y, width, height,speed, damage);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void OnCollision(GameObject collider) {
-		// TODO Auto-generated method stub
-		
+
+	public void OnCollision(Friendly collider) {
+		collider.hitEnemyBullet(this);
+		GameBoard.getGameBoard().getEnemyBullets().remove(this);
 	}
+
+	
 
 
 }

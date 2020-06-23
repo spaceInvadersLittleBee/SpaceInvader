@@ -35,6 +35,15 @@ public class GameBoard {
 		public Player getPlayer() {
 			return player;
 		}
+		public List<Enemy> getEnemies() {
+			return enemies;
+		}
+		public List<PlayerBullet> getPlayerBullets(){
+			return playerBullets;
+		}
+		public List<EnemyBullet> getEnemyBullets(){
+			return enemyBullets;
+		}
 		
 		
 		//called once when starting the game
@@ -80,7 +89,7 @@ public class GameBoard {
 	    	
 	    }
 	    
-	    private void endGame() {
+	    public void endGame() {
 	    	
 	    }
 	    

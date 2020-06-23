@@ -52,6 +52,6 @@ public abstract class GameObject {
 		return null;
 	}
 	
-	public abstract void OnCollision(GameObject collider);
+	
 
 }
