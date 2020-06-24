@@ -25,7 +25,7 @@ public class Wander implements MovePattern{
 	}
 
 	public double getYDir(double x, double y) {
-		return 0;
+		return 0.1;
 	}
 
 }

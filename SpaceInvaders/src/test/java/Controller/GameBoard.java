@@ -107,9 +107,14 @@ public class GameBoard {
 	    
 	    private void loadNewLevel() {
 	    	enemies.clear();
-	    	for(int i = 0; i<5; i++) {
+            for (int column = 0; column < 10; column++) {
+                for (int row = 0; row < 5; row++) {
+                    enemies.add(new Enemy(40+column*100, 50*row, 100,100,1.5, 100,100));
+                }
+            }    
+	    	/*for(int i = 0; i<5; i++) {
 	    		enemies.add(new Enemy(100+i*200, 50, 100,100,1.5, 100,100));
-	    	}
+	    	}*/
 	    }
 	    
 	    public void endGame() {
