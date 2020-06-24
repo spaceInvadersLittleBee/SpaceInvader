@@ -1,5 +1,7 @@
 package Model;
 
+import javax.swing.ImageIcon;
+
 import Controller.GameBoard;
 
 public class EnemyBullet extends Bullet implements Hostile{

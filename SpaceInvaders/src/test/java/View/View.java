@@ -40,6 +40,16 @@ public class View extends JFrame{
                 		GameBoard.getGameBoard().getEnemies().get(i).getX(),GameBoard.getGameBoard().getEnemies().get(i).getY(),
                 		GameBoard.getGameBoard().getEnemies().get(i).getWidth(),GameBoard.getGameBoard().getEnemies().get(i).getHeight(),null);
                 }
+                for(int i = 0; i < GameBoard.getGameBoard().getEnemyBullets().size();i++) {
+                	g.drawImage(GameBoard.getGameBoard().getEnemyBullets().get(i).getImage(),
+                		GameBoard.getGameBoard().getEnemyBullets().get(i).getX(),GameBoard.getGameBoard().getEnemyBullets().get(i).getY(),
+                		GameBoard.getGameBoard().getEnemyBullets().get(i).getWidth(),GameBoard.getGameBoard().getEnemyBullets().get(i).getHeight(),null);
+                }
+                for(int i = 0; i < GameBoard.getGameBoard().getPlayerBullets().size();i++) {
+                	g.drawImage(GameBoard.getGameBoard().getPlayerBullets().get(i).getImage(),
+                		GameBoard.getGameBoard().getPlayerBullets().get(i).getX(),GameBoard.getGameBoard().getPlayerBullets().get(i).getY(),
+                		GameBoard.getGameBoard().getPlayerBullets().get(i).getWidth(),GameBoard.getGameBoard().getPlayerBullets().get(i).getHeight(),null);
+                }
             }
         };
         panel.setLocation(0,0);

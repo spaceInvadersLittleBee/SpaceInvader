@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -89,6 +90,13 @@ public class GameBoard {
 	    	}
 	        player.moveDir(view.getXAxis(), 0);
 	        moveEnemies();
+	        if (enemyBullets.isEmpty()) {
+	        	newEnemyBulletCanFire = true;
+	        }
+	        enemiesShoot();
+
+            moveBullets();
+	        
 	        if(enemies.isEmpty())isLevelClean=true;
 	        view.repaint();
 	    }//end of update
@@ -102,7 +110,15 @@ public class GameBoard {
 	    }
 	    //TODO
 	    private void moveBullets() {
-	    	
+	    	for(EnemyBullet b:enemyBullets) {
+	    		b.moveDir(0, 1);
+	    		if(b.getY()>700) {
+	    			enemyBullets.clear();;
+	    		}
+	    	}
+	    	for(PlayerBullet b:playerBullets) {
+	    		b.moveDir(0, -1);
+	    	}
 	    }
 	    
 	    private void loadNewLevel() {
@@ -111,7 +127,8 @@ public class GameBoard {
                 for (int row = 0; row < 5; row++) {
                     enemies.add(new Enemy(40+column*100, 50*row, 100,100,1.5, 100,100));
                 }
-            }    
+            } 
+
 	    	/*for(int i = 0; i<5; i++) {
 	    		enemies.add(new Enemy(100+i*200, 50, 100,100,1.5, 100,100));
 	    	}*/
@@ -121,11 +138,20 @@ public class GameBoard {
 	    	
 	    }
 	    
-	    
+	    private boolean newEnemyBulletCanFire=true;
+	    Random r = new Random();
 	    //TODO
 	    private void enemiesShoot() {
-	    	
-	    }
+	    	if (newEnemyBulletCanFire) {
+	    		for (int index = 0; index < enemies.size(); index++) {
+	    			if (r.nextInt(50) ==index) {
+	    				enemies.get(index).shoot();
+	                    //AudioPlayer
+	    			}
+	                newEnemyBulletCanFire= false;
+	            }
+	        }
+	   }
 
 
 }
