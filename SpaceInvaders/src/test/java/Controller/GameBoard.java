@@ -125,7 +125,7 @@ public class GameBoard {
 	    	enemies.clear();
             for (int column = 0; column < 10; column++) {
                 for (int row = 0; row < 5; row++) {
-                    enemies.add(new Enemy(40+column*100, 50*row, 50,50,1.5, 100,100));
+                    enemies.add(new Enemy(65+column*100, 50*row, 50,50,1.5, 100,100));
                 }
             } 
 
