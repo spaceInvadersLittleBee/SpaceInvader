@@ -49,6 +49,11 @@ public abstract class GameObject {
 	
 	//TODO
 	public GameObject detectCollision(List<GameObject> collidables) {
+		for(GameObject obj:collidables) {
+			if((x+width>=obj.getX()&&x<=obj.getX()+obj.getWidth())||(y+height>=obj.getY()&&y<=obj.getY()+obj.getHeight())) {
+				return obj;
+			}
+		}
 		return null;
 	}
 	

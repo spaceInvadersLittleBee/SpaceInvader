@@ -14,7 +14,8 @@ public class Player extends Character implements Friendly{
 	@Override
 	public void shoot() {
 		// TODO
-		
+		Bullet bullet=new PlayerBullet((int)this.x,(int)this.y,this.width, this.height,this.speed+2,100);//≤Œ ˝¥Ê“…
+		GameBoard.getGameBoard().getPlayerBullets().add((PlayerBullet) bullet);
 	}
 
 
