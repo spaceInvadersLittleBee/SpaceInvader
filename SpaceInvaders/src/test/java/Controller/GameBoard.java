@@ -26,7 +26,9 @@ public class GameBoard {
 		private int score;
 		private int level;
 		private boolean isGameOver;
-		private boolean isLevelClean;
+		private boolean isLevelClean = true;
+		private int numberOfTrace = 0;
+		private MovementPolicy movementPolicy;
 		
 		//getters
 		public static GameBoard getGameBoard() {
@@ -44,6 +46,15 @@ public class GameBoard {
 		public List<EnemyBullet> getEnemyBullets(){
 			return enemyBullets;
 		}
+		public int getNumberOfTrace() {
+			return numberOfTrace;
+		}
+		public void tracePlus() {
+			numberOfTrace++;
+		}
+		public void traceMinus() {
+			numberOfTrace--;
+		}
 		
 		
 		//called once when starting the game
@@ -55,6 +66,7 @@ public class GameBoard {
 			gameBoard.enemies = new LinkedList<Enemy>();
 			gameBoard.enemyBullets = new LinkedList<EnemyBullet>();
 			gameBoard.playerBullets = new LinkedList<PlayerBullet>();
+			gameBoard.movementPolicy = new MovementPolicy();
 			
 			gameBoard.view.windowSetup();
 			Timer timer = new Timer(17,(ActionListener) new ActionListener() {
@@ -71,14 +83,22 @@ public class GameBoard {
 		
 		//update is called once per frame
 	    private void update(){
+	    	if(isLevelClean) {
+	    		loadNewLevel();
+	    		isLevelClean = false;
+	    	}
 	        player.moveDir(view.getXAxis(), 0);
-	        
+	        moveEnemies();
+	        if(enemies.isEmpty())isLevelClean=true;
 	        view.repaint();
 	    }//end of update
 	    
 	    //TODO
 	    private void moveEnemies() {
-	    	
+	    	movementPolicy.configure(this);
+	    	for(Enemy e: enemies) {
+	    		e.move();
+	    	}
 	    }
 	    //TODO
 	    private void moveBullets() {
@@ -86,7 +106,10 @@ public class GameBoard {
 	    }
 	    
 	    private void loadNewLevel() {
-	    	
+	    	enemies.clear();
+	    	for(int i = 0; i<5; i++) {
+	    		enemies.add(new Enemy(100+i*200, 50, 100,100,1.5, 100,100));
+	    	}
 	    }
 	    
 	    public void endGame() {

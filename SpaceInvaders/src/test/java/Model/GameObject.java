@@ -5,14 +5,14 @@ import java.util.List;
 
 public abstract class GameObject {
 	
-	protected int x;
-	protected int y;
+	protected double x;
+	protected double y;
 	protected int width;
 	protected int height;
-	protected int speed;
+	protected double speed;
 	protected Image image;
 	
-	public GameObject(int x, int y, int width, int height, int speed) {
+	public GameObject(int x, int y, int width, int height, double speed) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -21,11 +21,11 @@ public abstract class GameObject {
 	}
 	
 	public int getX() {
-		return x;
+		return (int)x;
 	}
 	
 	public int getY() {
-		return y;
+		return (int)y;
 	}
 	
 	public int getWidth() {
@@ -35,14 +35,14 @@ public abstract class GameObject {
 	public int getHeight() {
 		return height;
 	}
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 	public Image getImage() {
 		return image;
 	}
 	
-	public void moveDir(int xDir, int yDir) {
+	public void moveDir(double xDir, double yDir) {
 		x = x+xDir*speed;
 		y = y+yDir*speed;
 	}

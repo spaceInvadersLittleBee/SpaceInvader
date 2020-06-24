@@ -5,7 +5,7 @@ public class Wander implements MovePattern{
 	private int left;
 	private int right;
 	private int dir;
-	private int radius = 20;
+	private int radius = 50;
 	
 	public Wander(int x) {
 		this.left = x-radius;
@@ -14,7 +14,7 @@ public class Wander implements MovePattern{
 	}
 	
 
-	public int getXDir(int x, int y, int xp, int yp) {
+	public double getXDir(double x, double y) {
 		if(x>=right) {
 			dir = -1;
 		}
@@ -24,7 +24,7 @@ public class Wander implements MovePattern{
 		return dir;
 	}
 
-	public int getYDir(int x, int y, int xp, int yp) {
+	public double getYDir(double x, double y) {
 		return 0;
 	}
 

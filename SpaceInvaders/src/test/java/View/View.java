@@ -35,6 +35,11 @@ public class View extends JFrame{
                 g.drawImage(GameBoard.getGameBoard().getPlayer().getImage(),
                 		GameBoard.getGameBoard().getPlayer().getX(),GameBoard.getGameBoard().getPlayer().getY(),
                 		GameBoard.getGameBoard().getPlayer().getWidth(),GameBoard.getGameBoard().getPlayer().getHeight(),null);
+                for(int i = 0; i < GameBoard.getGameBoard().getEnemies().size();i++) {
+                	g.drawImage(GameBoard.getGameBoard().getEnemies().get(i).getImage(),
+                		GameBoard.getGameBoard().getEnemies().get(i).getX(),GameBoard.getGameBoard().getEnemies().get(i).getY(),
+                		GameBoard.getGameBoard().getEnemies().get(i).getWidth(),GameBoard.getGameBoard().getEnemies().get(i).getHeight(),null);
+                }
             }
         };
         panel.setLocation(0,0);

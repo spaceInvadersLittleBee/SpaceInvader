@@ -1,13 +1,23 @@
 package Model;
 
-public class Trace implements MovePattern{
+import Controller.GameBoard;
 
-	public int getXDir(int x, int y, int xp, int yp) {
-		return (int)((xp - x)/(Math.sqrt((xp-x)^2+(yp-y)^2)));
+public class Trace implements MovePattern{
+	
+	
+
+	public double getXDir(double x, double y) {
+		int xp = GameBoard.getGameBoard().getPlayer().getX();
+		int yp = GameBoard.getGameBoard().getPlayer().getY();
+		double n = ((xp - x)/(Math.sqrt((xp-x)*(xp-x)+(yp-y)*(yp-y))));
+		return n;
 	}
 
-	public int getYDir(int x, int y, int xp, int yp) {
-		return (int)((yp - y)/(Math.sqrt((xp-x)^2+(yp-y)^2)));
+	public double getYDir(double x, double y) {
+		int xp = GameBoard.getGameBoard().getPlayer().getX();
+		int yp = GameBoard.getGameBoard().getPlayer().getY();
+		double n = ((yp - y)/(Math.sqrt((xp-x)*(xp-x)+(yp-y)*(yp-y))));
+		return n;
 	}
 
 }

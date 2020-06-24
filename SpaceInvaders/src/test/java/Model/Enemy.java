@@ -8,7 +8,7 @@ public class Enemy extends Character implements Hostile{
 	private int value;
 	private MovePattern movePattern;
 	
-	public Enemy(int x, int y, int width, int height, int speed,int HP, int value) {
+	public Enemy(int x, int y, int width, int height, double speed,int HP, int value) {
 		super(x, y, width, height, speed,HP);
 		this.value = value;
 		movePattern = new Wander(x);
@@ -23,7 +23,16 @@ public class Enemy extends Character implements Hostile{
 
 	public void OnCollision(Friendly collider) {
 		collider.hitEnemy(this);
+		if(movePattern instanceof Trace)GameBoard.getGameBoard().traceMinus();
 		if(HP<=0)GameBoard.getGameBoard().getEnemies().remove(this);
+	}
+	
+	public void move() {
+		moveDir(movePattern.getXDir(x, y),movePattern.getYDir(x, y));
+	}
+	
+	public void setMovePattern(MovePattern movePattern) {
+		this.movePattern = movePattern;
 	}
 
 	

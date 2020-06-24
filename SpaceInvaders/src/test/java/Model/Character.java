@@ -4,7 +4,7 @@ public abstract class Character extends GameObject{
 	
 	protected int HP;
 
-	public Character(int x, int y, int width, int height, int speed,int HP) {
+	public Character(int x, int y, int width, int height, double speed,int HP) {
 		super(x, y, width, height, speed);
 		this.HP = HP;
 	}

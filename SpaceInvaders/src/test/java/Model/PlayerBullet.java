@@ -4,7 +4,7 @@ import Controller.GameBoard;
 
 public class PlayerBullet extends Bullet implements Friendly{
 	
-	public PlayerBullet(int x, int y, int width, int height,int speed, int damage) {
+	public PlayerBullet(int x, int y, int width, int height,double speed, int damage) {
 		super(x, y, width, height,speed, damage);
 		// TODO Auto-generated constructor stub
 	}
