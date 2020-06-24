@@ -1,5 +1,7 @@
 package Model;
 
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 
 import Controller.GameBoard;
@@ -8,7 +10,7 @@ public class Player extends Character implements Friendly{
 	
 	public Player(int x, int y, int width, int height,double speed, int HP) {
 		super(x, y, width, height, speed, HP);
-		this.image = new ImageIcon("src/test/resources/icecream.PNG").getImage();
+		this.image = new ImageIcon("src/main/resources/PlayerSkin.gif").getImage();
 	}
 
 	@Override

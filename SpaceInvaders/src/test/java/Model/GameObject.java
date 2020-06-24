@@ -3,6 +3,8 @@ package Model;
 import java.awt.Image;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+
 public abstract class GameObject {
 	
 	protected double x;

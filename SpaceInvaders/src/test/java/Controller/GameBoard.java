@@ -24,8 +24,8 @@ public class GameBoard {
 		private List<Enemy> enemies;
 		private List<PlayerBullet> playerBullets;
 		private List<EnemyBullet> enemyBullets;
-		private int score;
-		private int level;
+		private int score=0;
+		private int level=1;
 		private boolean isGameOver;
 		private boolean isLevelClean = true;
 		private int numberOfTrace = 0;
@@ -62,7 +62,7 @@ public class GameBoard {
 		public static void initializeGame() {
 			gameBoard = new GameBoard();
 			gameBoard.view = new View();
-			gameBoard.player = new Player(450,400,150,150,5,100);
+			gameBoard.player = new Player(450,500,50,50,5,100);
 			gameBoard.audioplayer = new AudioPlayer();
 			gameBoard.enemies = new LinkedList<Enemy>();
 			gameBoard.enemyBullets = new LinkedList<EnemyBullet>();
@@ -125,7 +125,7 @@ public class GameBoard {
 	    	enemies.clear();
             for (int column = 0; column < 10; column++) {
                 for (int row = 0; row < 5; row++) {
-                    enemies.add(new Enemy(40+column*100, 50*row, 100,100,1.5, 100,100));
+                    enemies.add(new Enemy(40+column*100, 50*row, 50,50,1.5, 100,100));
                 }
             } 
 
