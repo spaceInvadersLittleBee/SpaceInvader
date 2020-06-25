@@ -15,7 +15,7 @@ public class AudioPlayer {
 
 	public AudioPlayer() {
 		try {
-			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM .wav"));
+			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM.wav"));
 			backgroundMusic = AudioSystem.getClip();
 			backgroundMusic.open(s);
 			AudioInputStream s2 = AudioSystem.getAudioInputStream(new File("src/main/resources/bulletSound.wav"));
@@ -39,7 +39,7 @@ public class AudioPlayer {
 
 	public void playbgm() {
 		try {
-			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM .wav"));
+			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM.wav"));
 			backgroundMusic = AudioSystem.getClip();
 			backgroundMusic.open(s);
 			backgroundMusic.setFramePosition(0);
