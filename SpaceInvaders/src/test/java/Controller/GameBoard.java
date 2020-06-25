@@ -92,7 +92,7 @@ public class GameBoard {
 		public static void initializeGame() {
 			gameBoard = new GameBoard();
 			gameBoard.view = new View();
-			gameBoard.player = new Player(450,500,50,50,5,1);
+			gameBoard.player = new Player(450,500,50,50,5,3);
 			gameBoard.audioplayer = new AudioPlayer();
 			gameBoard.enemies = new LinkedList<Enemy>();
 			gameBoard.enemyBullets = new LinkedList<EnemyBullet>();
@@ -230,7 +230,7 @@ public class GameBoard {
 	    	enemies.clear();
 	    	enemyBullets.clear();
 	    	playerBullets.clear();
-	    	player = new Player(450,500,50,50,5,1);
+	    	player = new Player(450,500,50,50,5,3);
 	    	view.anyKeyPressed = false;
 	    }
 	    

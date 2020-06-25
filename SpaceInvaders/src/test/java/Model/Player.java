@@ -30,6 +30,7 @@ public class Player extends Character implements Friendly{
 	
 	public void hitEnemyBullet(EnemyBullet enemyBullet) {
 		loseHP(enemyBullet.damage);
+		GameBoard.getGameBoard().getAudioPlayer().playLoseHpSound();
 		if(HP<=0)GameBoard.getGameBoard().endGame();
 	}
 

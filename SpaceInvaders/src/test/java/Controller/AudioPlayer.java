@@ -9,8 +9,7 @@ public class AudioPlayer {
 	private Clip bulletSound;
 	// private Clip levelUpSound = new File("src/main/resources/levelUpSound.wav");
 	private Clip deathSound;
-	// private Clip hitmarkerSound = new
-	// File("src/main/resources/hitmarkerSound.wav");
+	private Clip loseHpSound;
 	private Clip bonusSound;
 	private Clip backgroundMusic;
 
@@ -25,7 +24,9 @@ public class AudioPlayer {
 			AudioInputStream s3 = AudioSystem.getAudioInputStream(new File("src/main/resources/deathSound.wav"));
 			deathSound = AudioSystem.getClip();
 			deathSound.open(s3);
-
+			AudioInputStream s4 = AudioSystem.getAudioInputStream(new File("src/main/resources/loseHPSound.wav"));
+			loseHpSound = AudioSystem.getClip();
+			loseHpSound.open(s4);
 		} catch (Exception e) {
 
 		}
@@ -77,6 +78,15 @@ public class AudioPlayer {
 			bonusSound.open(s);
 			bonusSound.setFramePosition(0);
 			bonusSound.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void playLoseHpSound() {
+		try {
+			loseHpSound.setFramePosition(0);
+			loseHpSound.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

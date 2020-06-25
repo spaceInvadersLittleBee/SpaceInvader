@@ -17,14 +17,16 @@ public class View extends JFrame {
 	private boolean shooting;
 	public boolean anyKeyPressed;
 	private Image background;
+	private Image hp;
 
 	// initialize frame
 	public void windowSetup() {
 		setSize(1100, 600);
 		setBackground(Color.black);
 		setLocation(200, 100);
-		background = new ImageIcon("src/main/resources/backgroundSkin.jpg").getImage();
-
+		background = new ImageIcon("src/main/resources/spaceBackground.gif").getImage();
+		hp=new ImageIcon("src/main/resources/playerSkinSmall.gif").getImage();
+		
 		panel = new JPanel() {
 			/**
 			 * 
@@ -39,8 +41,9 @@ public class View extends JFrame {
 					else
 						g.drawImage(GameBoard.getGameBoard().getStartImage(), 350, 300, 400, 360, null);
 				} else {
+					g.drawImage(background, 0, 0, 1100, 600, null);
 					g.setColor(Color.WHITE);
-					g.drawString("SCORE: "+GameBoard.getGameBoard().getScore(), 10, 10);
+					g.drawString("SCORE: "+GameBoard.getGameBoard().getScore(), 10, 20);
 					g.drawImage(GameBoard.getGameBoard().getPlayer().getImage(),
 							GameBoard.getGameBoard().getPlayer().getX(), GameBoard.getGameBoard().getPlayer().getY(),
 							GameBoard.getGameBoard().getPlayer().getWidth(),
@@ -65,6 +68,10 @@ public class View extends JFrame {
 								GameBoard.getGameBoard().getPlayerBullets().get(i).getY(),
 								GameBoard.getGameBoard().getPlayerBullets().get(i).getWidth(),
 								GameBoard.getGameBoard().getPlayerBullets().get(i).getHeight(), null);
+					}
+					g.drawString("HP: "+GameBoard.getGameBoard().getPlayer().getHP(), 150, 20);
+					for(int i=0;i<GameBoard.getGameBoard().getPlayer().getHP();i++) {
+						g.drawImage(hp, 200+30*i, 5, 20, 20, null);
 					}
 				}
 			}

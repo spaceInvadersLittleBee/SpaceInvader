@@ -23,7 +23,7 @@ public class Enemy extends Character implements Hostile{
 
 	@Override
 	public void shoot() {
-		Bullet bullet=new EnemyBullet((int)this.x+30,(int)this.y+100,10, 10,bulletSpeed,100);
+		Bullet bullet=new EnemyBullet((int)this.x+30,(int)this.y+100,10, 10,bulletSpeed,1);
 		GameBoard.getGameBoard().getEnemyBullets().add((EnemyBullet) bullet);
 		
 	}
