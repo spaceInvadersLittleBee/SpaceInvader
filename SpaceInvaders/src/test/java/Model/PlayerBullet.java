@@ -13,11 +13,14 @@ public class PlayerBullet extends Bullet implements Friendly{
 	public void hitEnemy(Enemy enemy) {
 		enemy.loseHP(damage);
 		disable();
+		GameBoard.getGameBoard().addScore(enemy.getValue());
+		GameBoard.getGameBoard().getAudioPlayer().playHitSound();
 	}
 
 
 	public void hitEnemyBullet(EnemyBullet enemyBullet) {
 		disable();
+		
 	}
 
 }

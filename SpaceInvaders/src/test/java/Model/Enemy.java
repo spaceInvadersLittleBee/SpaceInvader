@@ -17,6 +17,9 @@ public class Enemy extends Character implements Hostile{
 		this.image = new ImageIcon("src/main/resources/alien1Skin.gif").getImage();
 		bulletSpeed = 3;
 	}
+	public int getValue() {
+		return value;
+	}
 
 	@Override
 	public void shoot() {

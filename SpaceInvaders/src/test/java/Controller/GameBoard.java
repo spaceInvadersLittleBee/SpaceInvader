@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 import View.View;
@@ -29,11 +31,14 @@ public class GameBoard {
 		private int cd;
 		private int score=0;
 		private int level=1;
+		private boolean isRunning;
 		private boolean isGameOver;
 		private boolean isLevelClean = true;
 		private int numberOfTrace = 0;
 		private MovementPolicy movementPolicy;
 		private int frameTime;
+		private Image startImage;
+		private Image endImage;
 		
 		//getters
 		public static GameBoard getGameBoard() {
@@ -60,13 +65,34 @@ public class GameBoard {
 		public void traceMinus() {
 			numberOfTrace--;
 		}
+		public boolean isRunning() {
+			return isRunning;
+		}
+		public Image getStartImage() {
+			return startImage;
+		}
 		
+		public Image getEndImage() {
+			return endImage;
+		}
+		public boolean isGameOver() {
+			return isGameOver;
+		}
+		public AudioPlayer getAudioPlayer() {
+			return audioplayer;
+		}
+		public int getScore() {
+			return score;
+		}
+		public void addScore(int n) {
+			score = score+n;
+		}
 		
 		//called once when starting the game
 		public static void initializeGame() {
 			gameBoard = new GameBoard();
 			gameBoard.view = new View();
-			gameBoard.player = new Player(450,500,50,50,5,100);
+			gameBoard.player = new Player(450,500,50,50,5,1);
 			gameBoard.audioplayer = new AudioPlayer();
 			gameBoard.enemies = new LinkedList<Enemy>();
 			gameBoard.enemyBullets = new LinkedList<EnemyBullet>();
@@ -74,6 +100,8 @@ public class GameBoard {
 			gameBoard.movementPolicy = new MovementPolicy();
 			gameBoard.coolingTime = 300;
 			gameBoard.frameTime = 17;
+			gameBoard.startImage = new ImageIcon("src/main/resources/Ready_Page.gif").getImage();
+			gameBoard.endImage = new ImageIcon("src/main/resources/GameOver.gif").getImage();
 			
 			gameBoard.view.windowSetup();
 			Timer timer = new Timer(gameBoard.frameTime,(ActionListener) new ActionListener() {
@@ -90,6 +118,15 @@ public class GameBoard {
 		
 		//update is called once per frame
 	    private void update(){
+	    	
+	    	if(!view.anyKeyPressed) {
+	    		view.repaint();
+	    		return;
+	    	}
+	    	if(!audioplayer.isPlayingbgm()) {
+	    		audioplayer.playbgm();
+	    	}
+	    	isRunning = true;
 	    	if(isLevelClean) {
 	    		loadNewLevel();
 	    		isLevelClean = false;
@@ -100,6 +137,7 @@ public class GameBoard {
 	        
 	        if(view.isShooting()&&cd==0) {
 	        	player.shoot();
+	        	audioplayer.playShootSound();
 	        	cd = cd+coolingTime;
 	        }
 	        moveEnemies();
@@ -182,7 +220,18 @@ public class GameBoard {
 	    }
 	    
 	    public void endGame() {
-	    	
+	    	audioplayer.playDeathSound();
+	    	audioplayer.stopMusic();
+	    	isGameOver = true;
+	    	isRunning = false;
+	    	score = 0;
+	    	isLevelClean = true;
+	    	numberOfTrace = 0;
+	    	enemies.clear();
+	    	enemyBullets.clear();
+	    	playerBullets.clear();
+	    	player = new Player(450,500,50,50,5,1);
+	    	view.anyKeyPressed = false;
 	    }
 	    
 	    private boolean newEnemyBulletCanFire=true;

@@ -2,29 +2,84 @@ package Controller;
 
 import java.io.File;
 
+import javax.sound.sampled.*;
+
 public class AudioPlayer {
 
-    private File bulletSound = new File("src/main/resources/bulletSound.wav");
-    private File levelUpSound = new File("src/main/resources/levelUpSound.wav");
-    private File deathSound = new File("src/main/resources/deathSound.wav");
-    private File hitmarkerSound = new File("src/main/resources/hitmarkerSound.wav");
-    private File bonusSound = new File("src/main/resources/bonusSound.wav");
-    private File backgroundMusic = new File("src/main/resources/BGM.wav");
-	
-	public void playMusic() {
-		
+	private Clip bulletSound;
+	// private Clip levelUpSound = new File("src/main/resources/levelUpSound.wav");
+	private Clip deathSound;
+	// private Clip hitmarkerSound = new
+	// File("src/main/resources/hitmarkerSound.wav");
+	private Clip bonusSound;
+	private Clip backgroundMusic;
+
+	public AudioPlayer() {
+		try {
+			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM .wav"));
+			backgroundMusic = AudioSystem.getClip();
+			backgroundMusic.open(s);
+			AudioInputStream s2 = AudioSystem.getAudioInputStream(new File("src/main/resources/bulletSound.wav"));
+			bulletSound = AudioSystem.getClip();
+			bulletSound.open(s2);
+			AudioInputStream s3 = AudioSystem.getAudioInputStream(new File("src/main/resources/deathSound.wav"));
+			deathSound = AudioSystem.getClip();
+			deathSound.open(s3);
+
+		} catch (Exception e) {
+
+		}
+
 	}
-	
+
+	public boolean isPlayingbgm() {
+		return backgroundMusic.isActive();
+	}
+
+	public void playbgm() {
+		try {
+			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/BGM .wav"));
+			backgroundMusic = AudioSystem.getClip();
+			backgroundMusic.open(s);
+			backgroundMusic.setFramePosition(0);
+			backgroundMusic.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void stopMusic() {
-		
+		backgroundMusic.stop();
 	}
-	
+
 	public void playShootSound() {
-		
+		try {
+			bulletSound.setFramePosition(0);
+			bulletSound.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
+	public void playDeathSound() {
+		try {
+			deathSound.setFramePosition(0);
+			deathSound.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void playHitSound() {
-		
+		try {
+			AudioInputStream s = AudioSystem.getAudioInputStream(new File("src/main/resources/bonusSound.wav"));
+			bonusSound = AudioSystem.getClip();
+			bonusSound.open(s);
+			bonusSound.setFramePosition(0);
+			bonusSound.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
