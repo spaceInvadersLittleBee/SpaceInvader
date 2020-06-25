@@ -14,7 +14,7 @@ public class EnemyBullet extends Bullet implements Hostile{
 
 	public void OnCollision(Friendly collider) {
 		collider.hitEnemyBullet(this);
-		GameBoard.getGameBoard().getEnemyBullets().remove(this);
+		disable();
 	}
 
 	

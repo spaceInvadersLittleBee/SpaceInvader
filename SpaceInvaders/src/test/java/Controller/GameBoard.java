@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 import javax.swing.Timer;
 
@@ -24,12 +25,15 @@ public class GameBoard {
 		private List<Enemy> enemies;
 		private List<PlayerBullet> playerBullets;
 		private List<EnemyBullet> enemyBullets;
+		private int coolingTime;
+		private int cd;
 		private int score=0;
 		private int level=1;
 		private boolean isGameOver;
 		private boolean isLevelClean = true;
 		private int numberOfTrace = 0;
 		private MovementPolicy movementPolicy;
+		private int frameTime;
 		
 		//getters
 		public static GameBoard getGameBoard() {
@@ -68,9 +72,11 @@ public class GameBoard {
 			gameBoard.enemyBullets = new LinkedList<EnemyBullet>();
 			gameBoard.playerBullets = new LinkedList<PlayerBullet>();
 			gameBoard.movementPolicy = new MovementPolicy();
+			gameBoard.coolingTime = 300;
+			gameBoard.frameTime = 17;
 			
 			gameBoard.view.windowSetup();
-			Timer timer = new Timer(17,(ActionListener) new ActionListener() {
+			Timer timer = new Timer(gameBoard.frameTime,(ActionListener) new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
 					gameBoard.update();
@@ -89,6 +95,13 @@ public class GameBoard {
 	    		isLevelClean = false;
 	    	}
 	        player.moveDir(view.getXAxis(), 0);
+	        cd = cd - frameTime;
+	        if(cd<0)cd=0;
+	        
+	        if(view.isShooting()&&cd==0) {
+	        	player.shoot();
+	        	cd = cd+coolingTime;
+	        }
 	        moveEnemies();
 	        if (enemyBullets.isEmpty()) {
 	        	newEnemyBulletCanFire = true;
@@ -97,6 +110,34 @@ public class GameBoard {
 
             moveBullets();
 	        
+            for(Enemy e: enemies) {
+            	player.detectCollision(e);
+            	for(PlayerBullet b: playerBullets) {
+            		b.detectCollision(e);
+            	}
+            }
+            
+            for(EnemyBullet e: enemyBullets) {
+            	player.detectCollision(e);
+            	for(PlayerBullet b: playerBullets) {
+            		b.detectCollision(e);
+            	}
+            }
+            enemies.removeIf(new Predicate<Enemy>() {
+				public boolean test(Enemy e) {
+					return (!e.isEnabled());
+				}
+			});
+            enemyBullets.removeIf(new Predicate<EnemyBullet>() {
+				public boolean test(EnemyBullet e) {
+					return (!e.isEnabled());
+				}
+			});
+            playerBullets.removeIf(new Predicate<PlayerBullet>() {
+				public boolean test(PlayerBullet e) {
+					return (!e.isEnabled());
+				}
+			});
 	        if(enemies.isEmpty())isLevelClean=true;
 	        view.repaint();
 	    }//end of update
@@ -106,6 +147,9 @@ public class GameBoard {
 	    	movementPolicy.configure(this);
 	    	for(Enemy e: enemies) {
 	    		e.move();
+	    		if(e.getY()>700) {
+	    			e.disable();
+	    		}
 	    	}
 	    }
 	    //TODO
@@ -113,11 +157,14 @@ public class GameBoard {
 	    	for(EnemyBullet b:enemyBullets) {
 	    		b.moveDir(0, 1);
 	    		if(b.getY()>700) {
-	    			enemyBullets.clear();;
+	    			b.disable();
 	    		}
 	    	}
 	    	for(PlayerBullet b:playerBullets) {
 	    		b.moveDir(0, -1);
+	    		if(b.getY()<0) {
+	    			b.disable();
+	    		}
 	    	}
 	    }
 	    

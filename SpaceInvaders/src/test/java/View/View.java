@@ -80,16 +80,20 @@ public class View extends JFrame{
             }
             @Override
             public void keyReleased(KeyEvent e){
-                if(second==0)first=0;
+            	
+            	if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+            		shooting = false;
+            	}else {
+            		if(second==0)first=0;
                 else if((e.getKeyCode()==KeyEvent.VK_LEFT&&second==1)
                 		||(e.getKeyCode()==KeyEvent.VK_RIGHT&&second==-1)){
                     first=second;second=0;
                 }else {
+                
                     first=-second;second = 0;
                 }
-                if(e.getKeyCode()==KeyEvent.VK_SPACE) {
-                	shooting = false;
-                }
+            	}
+                
             }
         });
        

@@ -9,6 +9,7 @@ public abstract class GameObject {
 	
 	protected double x;
 	protected double y;
+	protected boolean enabled;
 	protected int width;
 	protected int height;
 	protected double speed;
@@ -20,6 +21,15 @@ public abstract class GameObject {
 		this.width = width;
 		this.height = height;
 		this.speed = speed;
+		this.enabled = true; 
+	}
+	
+	public void disable() {
+		enabled = false;
+	}
+	
+	public boolean isEnabled() {
+		return enabled;
 	}
 	
 	public int getX() {
@@ -50,13 +60,13 @@ public abstract class GameObject {
 	}
 	
 	//TODO
-	public GameObject detectCollision(List<GameObject> collidables) {
-		for(GameObject obj:collidables) {
-			if((x+width>=obj.getX()&&x<=obj.getX()+obj.getWidth())||(y+height>=obj.getY()&&y<=obj.getY()+obj.getHeight())) {
-				return obj;
+	public void detectCollision(GameObject obj) {
+		
+			if((x+width>=obj.getX()&&x<=obj.getX()+obj.getWidth())&&(y+height>=obj.getY()&&y<=obj.getY()+obj.getHeight())) {
+				((Hostile) obj).OnCollision((Friendly)this);
 			}
-		}
-		return null;
+		
+		
 	}
 	
 	

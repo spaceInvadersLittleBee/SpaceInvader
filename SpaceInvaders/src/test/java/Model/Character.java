@@ -3,6 +3,7 @@ package Model;
 public abstract class Character extends GameObject{
 	
 	protected int HP;
+	protected int bulletSpeed;
 
 	public Character(int x, int y, int width, int height, double speed,int HP) {
 		super(x, y, width, height, speed);

@@ -15,11 +15,12 @@ public class Enemy extends Character implements Hostile{
 		this.value = value;
 		movePattern = new Wander(x);
 		this.image = new ImageIcon("src/main/resources/alien1Skin.gif").getImage();
+		bulletSpeed = 3;
 	}
 
 	@Override
 	public void shoot() {
-		Bullet bullet=new EnemyBullet((int)this.x+30,(int)this.y+100,10, 10,this.speed*4,100);
+		Bullet bullet=new EnemyBullet((int)this.x+30,(int)this.y+100,10, 10,bulletSpeed,100);
 		GameBoard.getGameBoard().getEnemyBullets().add((EnemyBullet) bullet);
 		
 	}
@@ -27,7 +28,10 @@ public class Enemy extends Character implements Hostile{
 	public void OnCollision(Friendly collider) {
 		collider.hitEnemy(this);
 		if(movePattern instanceof Trace)GameBoard.getGameBoard().traceMinus();
-		if(HP<=0)GameBoard.getGameBoard().getEnemies().remove(this);
+		disable();
+		if(HP<=0) {
+			
+		}
 	}
 	
 	public void move() {

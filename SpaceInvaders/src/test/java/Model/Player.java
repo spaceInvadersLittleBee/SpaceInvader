@@ -1,22 +1,23 @@
 package Model;
 
-import java.awt.Toolkit;
-
 import javax.swing.ImageIcon;
 
 import Controller.GameBoard;
 
 public class Player extends Character implements Friendly{
 	
+	
+	
 	public Player(int x, int y, int width, int height,double speed, int HP) {
 		super(x, y, width, height, speed, HP);
 		this.image = new ImageIcon("src/main/resources/PlayerSkin.gif").getImage();
+		bulletSpeed = 5;
 	}
 
 	@Override
 	public void shoot() {
 		// TODO
-		Bullet bullet=new PlayerBullet((int)this.x+30,(int)this.y+100,10, 10,this.speed*4,100);//参数存疑
+		Bullet bullet=new PlayerBullet((int)this.x+25,(int)this.y+25,10, 10,bulletSpeed,100);//参数存疑
 		GameBoard.getGameBoard().getPlayerBullets().add((PlayerBullet) bullet);
 	}
 

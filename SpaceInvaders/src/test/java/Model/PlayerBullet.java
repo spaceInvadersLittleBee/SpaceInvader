@@ -12,12 +12,12 @@ public class PlayerBullet extends Bullet implements Friendly{
 
 	public void hitEnemy(Enemy enemy) {
 		enemy.loseHP(damage);
-		GameBoard.getGameBoard().getPlayerBullets().remove(this);
+		disable();
 	}
 
 
 	public void hitEnemyBullet(EnemyBullet enemyBullet) {
-		GameBoard.getGameBoard().getPlayerBullets().remove(this);
+		disable();
 	}
 
 }
