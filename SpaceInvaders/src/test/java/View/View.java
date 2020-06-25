@@ -69,9 +69,9 @@ public class View extends JFrame {
 								GameBoard.getGameBoard().getPlayerBullets().get(i).getWidth(),
 								GameBoard.getGameBoard().getPlayerBullets().get(i).getHeight(), null);
 					}
-					g.drawString("HP: "+GameBoard.getGameBoard().getPlayer().getHP(), 150, 20);
+					g.drawString("Lives: ", 150, 20);
 					for(int i=0;i<GameBoard.getGameBoard().getPlayer().getHP();i++) {
-						g.drawImage(hp, 200+30*i, 5, 20, 20, null);
+						g.drawImage(hp, 190+30*i, 5, 20, 20, null);
 					}
 				}
 			}
