@@ -15,7 +15,7 @@ public class View extends JFrame {
 	private int first = 0;// first key pressed
 	private int second = 0;// second key pressed
 	private boolean shooting;
-	public boolean anyKeyPressed;
+	public boolean anyKeyTyped;
 	private Image background;
 	private Image hp;
 
@@ -89,8 +89,11 @@ public class View extends JFrame {
 
 		addKeyListener(new KeyAdapter() {
 			@Override
+			public void keyTyped(KeyEvent e) {
+				anyKeyTyped = true;
+			}
+			@Override
 			public void keyPressed(KeyEvent e) {
-				anyKeyPressed = true;
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 					if (first == 0)
 						first = -1;
@@ -110,7 +113,6 @@ public class View extends JFrame {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-
 				if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 					shooting = false;
 				} else {

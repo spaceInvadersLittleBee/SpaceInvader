@@ -119,7 +119,7 @@ public class GameBoard {
 		//update is called once per frame
 	    private void update(){
 	    	
-	    	if(!view.anyKeyPressed) {
+	    	if(!view.anyKeyTyped) {
 	    		view.repaint();
 	    		return;
 	    	}
@@ -207,10 +207,11 @@ public class GameBoard {
 	    }
 	    
 	    private void loadNewLevel() {
+	    	numberOfTrace = 0;
 	    	enemies.clear();
             for (int column = 0; column < 10; column++) {
                 for (int row = 0; row < 5; row++) {
-                    enemies.add(new Enemy(65+column*100, 50*row, 50,50,1.5, 100,100));
+                    enemies.add(new Enemy(65+column*100, 50*row, 50,50,1, 100,100));
                 }
             } 
 
@@ -231,7 +232,8 @@ public class GameBoard {
 	    	enemyBullets.clear();
 	    	playerBullets.clear();
 	    	player = new Player(450,500,50,50,5,3);
-	    	view.anyKeyPressed = false;
+	    	view.anyKeyTyped= false;
+	    	
 	    }
 	    
 	    private boolean newEnemyBulletCanFire=true;
