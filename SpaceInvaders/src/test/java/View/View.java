@@ -43,6 +43,7 @@ public class View extends JFrame {
 				} else {
 					g.drawImage(background, 0, 0, 1100, 600, null);
 					g.setColor(Color.WHITE);
+					
 					g.drawString("SCORE: "+GameBoard.getGameBoard().getScore(), 10, 20);
 					g.drawImage(GameBoard.getGameBoard().getPlayer().getImage(),
 							GameBoard.getGameBoard().getPlayer().getX(), GameBoard.getGameBoard().getPlayer().getY(),
